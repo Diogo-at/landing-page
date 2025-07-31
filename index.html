@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Criação de Sites e Apps - Diogo Alves</title>
+  <meta name="description" content="Criação de sites e aplicativos modernos para pequenos negócios. Sites responsivos, apps para Android e iOS, entrega rápida e preços especiais." />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0; padding: 0;
+      background: #f5f9ff;
+      color: #222;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    header {
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      color: white;
+      padding: 60px 20px 80px 20px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgb(37 99 235 / 0.3);
+      animation: fadeInDown 1s ease forwards;
+      position: relative;
+      z-index: 1;
+    }
+    header h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 2.8rem;
+      letter-spacing: 1.2px;
+    }
+    header p {
+      font-size: 1.25rem;
+      margin-top: 12px;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 400;
+    }
+    main {
+      max-width: 720px;
+      margin: 0 auto 60px auto;
+      padding: 0 20px;
+      text-align: center;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.6s;
+      opacity: 0;
+    }
+    .btn-whatsapp {
+      display: inline-block;
+      background: #25d366;
+      color: white;
+      padding: 18px 38px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: 0 6px 12px rgb(37 211 102 / 0.45);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      margin-top: 30px;
+      z-index: 2;
+      position: relative;
+    }
+    .btn-whatsapp:hover {
+      background: #1ebe57;
+      box-shadow: 0 8px 20px rgb(27 174 75 / 0.65);
+      transform: scale(1.05);
+    }
+    /* Lista de serviços deslocada para baixo, com margem maior */
+    ul.servicos {
+      list-style: none;
+      padding: 0;
+      max-width: 480px;
+      margin: 60px auto 0 auto; /* margem topo aumentada */
+      text-align: left;
+      font-size: 1.1rem;
+      color: #444;
+    }
+    ul.servicos li {
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transform: translateX(-30px);
+      animation: slideInLeft 0.5s forwards;
+    }
+    ul.servicos li:nth-child(1) { animation-delay: 0.8s; }
+    ul.servicos li:nth-child(2) { animation-delay: 1.0s; }
+    ul.servicos li:nth-child(3) { animation-delay: 1.2s; }
+    ul.servicos li:nth-child(4) { animation-delay: 1.4s; }
+    .icon-check {
+      display: inline-block;
+      vertical-align: middle;
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+      fill: #2563eb;
+      flex-shrink: 0;
+    }
+    .depoimentos {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      text-align: left;
+    }
+    .depoimento {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgb(0 0 0 / 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.5s forwards;
+    }
+    .depoimento:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 35px rgb(37 99 235 / 0.35);
+    }
+    .depoimento:nth-child(1) { animation-delay: 1.6s; }
+    .depoimento:nth-child(2) { animation-delay: 1.8s; }
+    .depoimento strong {
+      display: block;
+      font-size: 1.15rem;
+      color: #1e40af;
+      margin-bottom: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 18px 10px;
+      font-size: 14px;
+      color: #555;
+      background: #e1e7ff;
+      user-select: none;
+    }
+    .como-funciona {
+      margin: 50px auto 0 auto;
+      max-width: 720px;
+      padding: 0 20px;
+      text-align: left;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgb(0 0 0 / 0.07);
+      padding: 30px 40px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.5s forwards;
+      animation-delay: 2s;
+    }
+    .como-funciona h2 {
+      color: #1e40af;
+      margin-bottom: 20px;
+      font-weight: 600;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    .como-funciona ol {
+      padding-left: 20px;
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.7;
+    }
+    .como-funciona ol li {
+      margin-bottom: 15px;
+    }
+    form {
+      margin: 40px auto 0 auto;
+      max-width: 480px;
+      background: white;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgb(0 0 0 / 0.08);
+      text-align: left;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.5s forwards;
+      animation-delay: 2.6s;
+    }
+    form label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #1e40af;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 20px;
+      border: 1.5px solid #2563eb;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      transition: border-color 0.3s ease;
+    }
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: #1e40af;
+      box-shadow: 0 0 8px #1e40afaa;
+    }
+    form textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    form button {
+      background: #2563eb;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border: none;
+      padding: 14px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background: #1e40af;
+    }
+    @keyframes fadeInDown {
+      0% { opacity: 0; transform: translateY(-40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideInLeft {
+      0% { opacity: 0; transform: translateX(-30px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Diogo Alves</h1>
+    <p>Criação de Sites e Aplicativos <br />Para Pequenos Negócios – Salões, Oficinas, Restaurantes e mais</p>
+    <a href="https://wa.me/5511977602703" target="_blank" class="btn-whatsapp" aria-label="Fale comigo no WhatsApp">
+      📲 Fale comigo no WhatsApp
+    </a>
+  </header>
+  <main>
+    <ul class="servicos" aria-label="Lista de serviços oferecidos">
+      <li><svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2l-3.5-3.5 1.41-1.41L9 13.38l7.09-7.09 1.41 1.41z"/></svg> Sites responsivos e modernos</li>
+      <li><svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2l-3.5-3.5 1.41-1.41L9 13.38l7.09-7.09 1.41 1.41z"/></svg> Aplicativos para Android e iOS</li>
+      <li><svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2l-3.5-3.5 1.41-1.41L9 13.38l7.09-7.09 1.41 1.41z"/></svg> Entrega rápida e suporte dedicado</li>
+      <li><svg class="icon-check" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2l-3.5-3.5 1.41-1.41L9 13.38l7.09-7.09 1.41 1.41z"/></svg> Preços especiais até dia 10</li>
+    </ul>
+
+    <section class="depoimentos" aria-label="Depoimentos de clientes">
+      <div class="depoimento" tabindex="0">
+        <strong>João S.</strong>
+        <p>"O Diogo criou um site para minha oficina que aumentou muito meus clientes. Recomendo!"</p>
+      </div>
+      <div class="depoimento" tabindex="0">
+        <strong>Maria L.</strong>
+        <p>"Excelente trabalho e entrega rápida. Meu app para salão ficou show!"</p>
+      </div>
+    </section>
+
+    <section class="como-funciona" aria-label="Como funciona o serviço">
+      <h2>Como funciona?</h2>
+      <ol>
+        <li>Você me conta suas necessidades e objetivos.</li>
+        <li>Eu desenvolvo um site ou app personalizado para seu negócio.</li>
+        <li>Fazemos ajustes conforme seu feedback.</li>
+        <li>Você recebe o projeto finalizado e começa a atrair mais clientes!</li>
+      </ol>
+    </section>
+
+    <form id="contato" aria-label="Formulário de contato">
+      <h2>Entre em contato</h2>
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" placeholder="Seu email" required />
+      <label for="mensagem">Mensagem</label>
+      <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </main>
+  <footer>
+    &copy; 2025 Diogo Alves - Todos os direitos reservados
+  </footer>
+
+  <script>
+    // Formulário simples: envia dados para email via mailto (solução básica)
+    const form = document.getElementById('contato');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = form.nome.value.trim();
+      const email = form.email.value.trim();
+      const mensagem = form.mensagem.value.trim();
+      if (!nome || !email || !mensagem) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+      const subject = encodeURIComponent(`Contato via Landing Page - ${nome}`);
+      const body = encodeURIComponent(`Nome: ${nome}\nEmail: ${email}\nMensagem: ${mensagem}`);
+      window.location.href = `mailto:seu-email@exemplo.com?subject=${subject}&body=${body}`;
+      alert('Obrigado pelo contato! Você será respondido em breve.');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
+
